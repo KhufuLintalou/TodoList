@@ -1,5 +1,3 @@
-"use strict";
-
 class Todo {
     constructor(title, descript, dueDate, priority, status) {
         this.title = title;
@@ -34,4 +32,4 @@ class Project {
     }
 }
 
-export { Todo, Project };
+export { Project };
