@@ -13,11 +13,11 @@ Projects[0].createTodo("test", "this is for testing", "implement later", 3, "");
 const sidebar = document.querySelector(".sidebar");
 const todoSection = document.querySelector(".todo-section");
 const newTodo = document.querySelector(".new-todo");
+const newProjectButton = document.querySelector("#new");
 
 function updateDisplay(display) {
     switch (display) {
         case "project":
-            const newProjectButton = document.querySelector("#new");
             while (newProjectButton.nextSibling) {
                 newProjectButton.nextSibling.remove();
             }
@@ -31,6 +31,8 @@ function updateDisplay(display) {
 }
 
 function displayProjects() {
+    updateDisplay("project");
+
     Projects.forEach((project) => {
         const projectDisplay = document.createElement("button");
         projectDisplay.textContent = project.name;
@@ -54,7 +56,6 @@ function displayTodos(event) {
             const todoTitle = document.createElement("h3");
             const todoDueDate = document.createElement("div");
 
-
             todoTitle.textContent = item.title;
             todoDueDate.textContent = item.dueDate;
 
@@ -69,8 +70,34 @@ function displayTodos(event) {
 
 sidebar.addEventListener("click", displayTodos);
 
+function addProject() {
+    const newProjectDialog = document.querySelector(".new-project");
+    const projectNameInput = document.querySelector("#project-name");
+    const addProjectButton = document.querySelector(".add-project");
+    const closeDialog = document.querySelector(".close");
+
+    newProjectDialog.show();
+ 
+    addProjectButton.addEventListener("click", () => {
+        if (projectNameInput.value !== "") {
+            createProject(projectNameInput.value);
+            newProjectDialog.close();
+        }
+
+        projectNameInput.value = "";
+
+        displayProjects();
+    })
+
+    closeDialog.addEventListener("click", () => {
+        newProjectDialog.close();
+    })
+}
+
+newProjectButton.addEventListener("click", addProject);
+    
 function testLog() {
-    console.log(Projects);
+    console.log("");
 }
 
 export { displayProjects, testLog };
