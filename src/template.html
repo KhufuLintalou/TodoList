@@ -8,19 +8,37 @@
 <body>
     <div class="content">
         <div class="sidebar">
-            <button id="new">New Project+</button>
+            <button id="new-project-button">New Project+</button>
         </div>
         <div class="todo-section">
-            <div class="new-todo">
-                <button>+</button>
+            <div>
+                <button id="new-todo-button">+</button>
             </div>
         </div>
     </div>
-    <dialog class="new-project">
-        <button class="add-project">+</button>
-        <button class="close">x</button>
+    <dialog id="new-project">
+        <button id="add-project">+</button>
+        <button id="cancle-project">x</button>
         <label for="project-name">Project Name:</label>
         <input type="text" id="project-name">
+    </dialog>
+    <dialog id="new-todo">
+        <label for="title">Title:</label>
+        <input type="text" id="title">
+        <label for="desc">Description:</label>
+        <input type="text" id="desc">
+        <label for="dueDate">Due Date:</label>
+        <input type="datetime-local" id="dueDate">
+        <label for="priority">Priority:</label>
+        <select id="priority">
+            <option value="0">Low</option>
+            <option value="1">Medium</option>
+            <option value="2">High</option>
+        </select>
+        <div>
+            <button id="add-todo">Add</button>
+            <button id="cancle-todo">Cancel</button>
+        </div>
     </dialog>
 </body>
 </html>
