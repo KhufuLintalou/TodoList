@@ -75,7 +75,26 @@ function displayTodos() {
     })
 }
 
-sidebar.addEventListener("click", displayTodos);
+function selectProjectOnClick(event) {
+    const target = event.target;
+
+    if (Projects[target.dataset.indexNumber].isSelected === false) {
+        Projects.forEach((project) => {
+            if (project.isSelected === true) {
+                project.deSelectProject();
+            }
+        })
+
+        Projects[target.dataset.indexNumber].selectProject();
+    }
+}
+
+sidebar.addEventListener("click", (event) => {
+    if (event.target.className === "project") {
+        selectProjectOnClick(event);
+        displayTodos();
+    }
+});
 
 function addProject() {
     const newProjectDialog = document.getElementById("new-project");
@@ -115,6 +134,7 @@ function addTodo() {
 
     dateInput.min = formattedCurrentDate;
 
+    updateDisplay("error");
     newTodoDialog.show();
 
     function inputCheck() {
@@ -139,7 +159,7 @@ function addTodo() {
             updateDisplay("error");
 
             const errorMessage = document.createElement("div");
-            errorMessage.textContent = "You need to fill in all the fields or set the due date correctly."
+            errorMessage.textContent = "You need to fill in all the fields."
             errorMessage.id = "error";
 
             newTodoDialog.appendChild(errorMessage);
