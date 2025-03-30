@@ -67,6 +67,8 @@ function displayTodos() {
 
                 todoItem.className = "todo-item";
 
+                todoItem.dataset.indexNumber = project.todoItem.indexOf(todo);
+
                 todoSection.appendChild(todoItem);
                 todoItem.appendChild(todoTitle);
                 todoItem.appendChild(todoDueDate);
@@ -185,9 +187,61 @@ function addTodo() {
 
 newTodoButton.addEventListener("click", addTodo);
 
+function viewTodoDetails(event) {
+    const target = event.target;
+
+    if (target.className === "todo-item") {
+        const detailsDialog = document.getElementById("todo-detail");
+        const titleDetails = document.getElementById("title-detail");
+        const descDetails = document.getElementById("desc-detail");
+        const dueDateDetails = document.getElementById("dueDate-detail");
+        const priorityDetails = document.getElementById("priority-detail");
+        const applyButton = document.getElementById("apply");
+        const cancelButton = document.getElementById("cancel-detail");
+
+        detailsDialog.dataset.indexNumber = target.dataset.indexNumber;
+
+        Projects.forEach((project) => {
+            if (project.isSelected === true) {
+                const todoItem = project.todoItem[detailsDialog.dataset.indexNumber];
+
+                titleDetails.value = todoItem.title;
+                descDetails.value = todoItem.descript;
+                dueDateDetails.value = todoItem.dueDate;
+                priorityDetails.value = todoItem.priority;
+            }
+        })
+
+        detailsDialog.showModal();
+
+        applyButton.addEventListener("click", () => {
+            Projects.forEach((project) => {
+                if (project.isSelected === true) {
+                    const todoItem = project.todoItem[detailsDialog.dataset.indexNumber];
+
+                    todoItem.title = titleDetails.value;
+                    todoItem.descript = descDetails.value;
+                    todoItem.dueDate = dueDateDetails.value;
+                    todoItem.priority = priorityDetails.value;
+                }
+            })
+
+            displayTodos();
+
+            detailsDialog.close()
+        })
+
+        cancelButton.addEventListener("click", () => {
+            detailsDialog.close();
+        })
+    }
+}
+
+todoSection.addEventListener("click", viewTodoDetails);
+
     
 function testLog() {
-    console.log((Projects));
+    console.log(Projects);
 }
 
 export { displayProjects, testLog, displayTodos };
