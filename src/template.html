@@ -40,5 +40,23 @@
             <button id="cancel-todo">Cancel</button>
         </div>
     </dialog>
+    <dialog id="todo-detail">
+        <label for="title-detail">Title:</label>
+        <input type="text" id="title-detail">
+        <label for="desc-detail">Description:</label>
+        <input type="text" id="desc-detail">
+        <label for="dueDate-detail">Due Date:</label>
+        <input type="datetime-local" id="dueDate-detail">
+        <label for="priority-detail">Priority:</label>
+        <select id="priority-detail">
+            <option value="0">Low</option>
+            <option value="1">Medium</option>
+            <option value="2">High</option>
+        </select>
+        <div>
+            <button id="apply">Apply</button>
+            <button id="cancel-detail">Cancel</button>
+        </div>
+    </dialog>
 </body>
 </html>
