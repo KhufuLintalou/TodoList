@@ -61,17 +61,31 @@ function displayTodos() {
                 const todoItem = document.createElement("div");
                 const todoTitle = document.createElement("h3");
                 const todoDueDate = document.createElement("div");
+                const todoContentWrapper = document.createElement("div");
+                const todoCheckBox = document.createElement("input");
 
                 todoTitle.textContent = todo.title;
                 todoDueDate.textContent = todo.dueDate.replace("T", " | ");
 
                 todoItem.className = "todo-item";
+                todoContentWrapper.className = "todo-content";
+                todoCheckBox.className = "checkbox";
+
+                todoCheckBox.type = "checkbox";
 
                 todoItem.dataset.indexNumber = project.todoItem.indexOf(todo);
 
+                if (todo.status === "complete") {
+                    todoCheckBox.defaultChecked = true;
+                } else {
+                    todoCheckBox.defaultChecked = false;
+                }
+
                 todoSection.appendChild(todoItem);
-                todoItem.appendChild(todoTitle);
-                todoItem.appendChild(todoDueDate);
+                todoItem.appendChild(todoCheckBox);
+                todoItem.appendChild(todoContentWrapper);
+                todoContentWrapper.appendChild(todoTitle);
+                todoContentWrapper.appendChild(todoDueDate);
             })
         }
     })
@@ -237,7 +251,30 @@ function viewTodoDetails(event) {
     }
 }
 
+function changeTodoStatus(event) {
+    const target = event.target;
+
+    if (target.className === "checkbox") {
+        const todoItemOnPage = target.parentElement;
+        
+        if (target.checked) {
+            Projects.forEach((project) => {
+                if (project.isSelected === true) {
+                    project.todoItem[todoItemOnPage.dataset.indexNumber].changeStatus();
+                }
+            })
+        } else {
+            Projects.forEach((project) => {
+                if (project.isSelected === true) {
+                    project.todoItem[todoItemOnPage.dataset.indexNumber].changeStatus();
+                }
+            })
+        }
+    }
+}
+
 todoSection.addEventListener("click", viewTodoDetails);
+todoSection.addEventListener("click", changeTodoStatus);
 
     
 function testLog() {
