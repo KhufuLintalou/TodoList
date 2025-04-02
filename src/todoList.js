@@ -14,10 +14,6 @@ class Todo {
             this.status = "yet";
         }
     }
-
-    changePriority(num) {
-        this.priority = num;
-    }
 }
 
 class Project {
@@ -38,6 +34,10 @@ class Project {
 
     deSelectProject() {
         this.isSelected = false;
+    }
+
+    removeTodo(index) {
+        this.todoItem.splice(index, 1);
     }
 }
 
