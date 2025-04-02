@@ -63,13 +63,16 @@ function displayTodos() {
                 const todoDueDate = document.createElement("div");
                 const todoContentWrapper = document.createElement("div");
                 const todoCheckBox = document.createElement("input");
+                const removeButton = document.createElement("button");
 
                 todoTitle.textContent = todo.title;
                 todoDueDate.textContent = todo.dueDate.replace("T", " | ");
+                removeButton.textContent = "x";
 
                 todoItem.className = "todo-item";
                 todoContentWrapper.className = "todo-content";
                 todoCheckBox.className = "checkbox";
+                removeButton.className = "remove";
 
                 todoCheckBox.type = "checkbox";
 
@@ -84,6 +87,7 @@ function displayTodos() {
                 todoSection.appendChild(todoItem);
                 todoItem.appendChild(todoCheckBox);
                 todoItem.appendChild(todoContentWrapper);
+                todoItem.appendChild(removeButton);
                 todoContentWrapper.appendChild(todoTitle);
                 todoContentWrapper.appendChild(todoDueDate);
             })
@@ -273,8 +277,43 @@ function changeTodoStatus(event) {
     }
 }
 
+function removeTodoOnPage(event) {
+    const target = event.target;
+
+    if (target.className === "remove") {
+        const removeDialog = document.getElementById("remove");
+        const yesButton = document.getElementById("yes");
+        const noButton = document.getElementById("no");
+        const todoItemIndex = target.parentElement.dataset.indexNumber;
+
+        removeDialog.show();
+
+        function closeDialog() {
+            removeDialog.close();
+            yesButton.removeEventListener("click", clickHandler);
+        }
+        
+        function clickHandler() {
+            Projects.forEach((project) => {
+                if (project.isSelected === true) {
+                    project.removeTodo(todoItemIndex);
+                }
+            })
+
+            displayTodos();
+
+            closeDialog();
+        }
+
+        yesButton.addEventListener("click", clickHandler);
+
+        noButton.addEventListener("click", closeDialog);
+    }
+}
+
 todoSection.addEventListener("click", viewTodoDetails);
 todoSection.addEventListener("click", changeTodoStatus);
+todoSection.addEventListener("click", removeTodoOnPage);
 
     
 function testLog() {
