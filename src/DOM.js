@@ -216,12 +216,11 @@ function viewTodoDetails(event) {
         const priorityDetails = document.getElementById("priority-detail");
         const applyButton = document.getElementById("apply");
         const cancelButton = document.getElementById("cancel-detail");
-
-        detailsDialog.dataset.indexNumber = target.dataset.indexNumber;
+        const todoItemIndex = target.dataset.indexNumber;
 
         Projects.forEach((project) => {
             if (project.isSelected === true) {
-                const todoItem = project.todoItem[detailsDialog.dataset.indexNumber];
+                const todoItem = project.todoItem[todoItemIndex];
 
                 titleDetails.value = todoItem.title;
                 descDetails.value = todoItem.descript;
@@ -232,10 +231,15 @@ function viewTodoDetails(event) {
 
         detailsDialog.showModal();
 
-        applyButton.addEventListener("click", () => {
+        function closeDialog() {
+            detailsDialog.close();
+            applyButton.removeEventListener("click", clickHandler);
+        }
+
+        function clickHandler() {
             Projects.forEach((project) => {
                 if (project.isSelected === true) {
-                    const todoItem = project.todoItem[detailsDialog.dataset.indexNumber];
+                    const todoItem = project.todoItem[todoItemIndex];
 
                     todoItem.title = titleDetails.value;
                     todoItem.descript = descDetails.value;
@@ -246,12 +250,12 @@ function viewTodoDetails(event) {
 
             displayTodos();
 
-            detailsDialog.close()
-        })
+            closeDialog()
+        }
 
-        cancelButton.addEventListener("click", () => {
-            detailsDialog.close();
-        })
+        applyButton.addEventListener("click", clickHandler);
+
+        cancelButton.addEventListener("click", closeDialog);
     }
 }
 
