@@ -9,7 +9,7 @@ function createProject(name) {
 }
 
 createProject("My Project");
-Projects[0].createTodo("test", "this is for testing", "implement later", 3);
+Projects[0].createTodo("test", "this is for testing", "implement later", 3, "TEST");
 Projects[0].selectProject();
 
 const sidebar = document.querySelector(".sidebar");
@@ -84,12 +84,47 @@ function displayTodos() {
                     todoCheckBox.defaultChecked = false;
                 }
 
-                todoSection.appendChild(todoItem);
                 todoItem.appendChild(todoCheckBox);
                 todoItem.appendChild(todoContentWrapper);
                 todoItem.appendChild(removeButton);
                 todoContentWrapper.appendChild(todoTitle);
                 todoContentWrapper.appendChild(todoDueDate);
+
+                const categories = [];
+
+                if (!categories.includes(todo.category)) {
+                    categories.push(todo.category);
+                }
+
+                categories.forEach((category) => {
+                    const categoryOnPage = document.createElement("div");
+                    const categoryTitle = document.createElement("h2");
+
+                    categoryTitle.textContent = category;
+
+                    categoryOnPage.className = "category";
+                    categoryTitle.className = "category-title";
+                        
+                    categoryOnPage.id = category;
+                    
+                    categoryOnPage.appendChild(categoryTitle);
+
+                    const categoryWithIdOnPage = document.getElementById(category); 
+                    
+                    if (!categoryWithIdOnPage) {
+                        todoSection.appendChild(categoryOnPage);
+                    } else {
+                        categoryOnPage.remove();
+                    }
+                })
+
+                const categoriesOnPage = document.querySelectorAll(".category");
+
+                categoriesOnPage.forEach((category) => {
+                    if (todo.category === category.id) {
+                        category.appendChild(todoItem);
+                    }
+                })               
             })
         }
     })
@@ -150,6 +185,7 @@ function addTodo() {
     const prioritySelect = document.getElementById("priority");
     const addTodoButton = document.getElementById("add-todo");
     const cancelButton = document.getElementById("cancel-todo");
+    const categoryInput = document.getElementById("category");
     const formattedCurrentDate = getCurrentDate();
 
     dateInput.min = formattedCurrentDate;
@@ -184,10 +220,14 @@ function addTodo() {
 
             newTodoDialog.appendChild(errorMessage);
         } else {
+            if (categoryInput.value === "") {
+                categoryInput.value = "General";
+            }
+
             Projects.forEach((project) => {
                 if (project.isSelected === true) {
                     project.createTodo(titleInput.value, descInput.value, dateInput.value,
-                                       prioritySelect.value);
+                                       prioritySelect.value, categoryInput.value);
                 }
             })
 
@@ -216,6 +256,7 @@ function viewTodoDetails(event) {
         const priorityDetails = document.getElementById("priority-detail");
         const applyButton = document.getElementById("apply");
         const cancelButton = document.getElementById("cancel-detail");
+        const categoryDetails = document.getElementById("category-detail");
         const todoItemIndex = target.dataset.indexNumber;
 
         Projects.forEach((project) => {
@@ -226,6 +267,7 @@ function viewTodoDetails(event) {
                 descDetails.value = todoItem.descript;
                 dueDateDetails.value = todoItem.dueDate;
                 priorityDetails.value = todoItem.priority;
+                categoryDetails.value = todoItem.category;
             }
         })
 
@@ -245,6 +287,7 @@ function viewTodoDetails(event) {
                     todoItem.descript = descDetails.value;
                     todoItem.dueDate = dueDateDetails.value;
                     todoItem.priority = priorityDetails.value;
+                    todoItem.category = categoryDetails.value;
                 }
             })
 
