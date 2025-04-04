@@ -1,10 +1,11 @@
 class Todo {
-    constructor(title, descript, dueDate, priority) {
+    constructor(title, descript, dueDate, priority, category) {
         this.title = title;
         this.descript = descript;
         this.dueDate = dueDate;
         this.priority = priority;
         this.status = "yet";
+        this.category = category;
     }
 
     changeStatus() {
@@ -23,8 +24,8 @@ class Project {
         this.isSelected = false;
     }
 
-    createTodo(title, descript, dueDate, priority, status) {
-        const newTodoItem = new Todo(title, descript, dueDate, priority, status);
+    createTodo(title, descript, dueDate, priority, category) {
+        const newTodoItem = new Todo(title, descript, dueDate, priority, category);
         this.todoItem.push(newTodoItem);
     }
 
