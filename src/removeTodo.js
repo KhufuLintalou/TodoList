@@ -1,4 +1,4 @@
-import { Projects } from "./DOM.js";
+import { Projects, getSelectedProjectIndex } from "./DOM.js";
 import { displayTodos } from "./displayTodos.js";
 
 export function removeTodoOnPage(event) {
@@ -10,7 +10,7 @@ export function removeTodoOnPage(event) {
         const noButton = document.getElementById("no");
         const todoItemIndex = target.parentElement.dataset.indexNumber;
 
-        removeDialog.show();
+        removeDialog.showModal();
 
         function closeDialog() {
             removeDialog.close();
@@ -18,11 +18,7 @@ export function removeTodoOnPage(event) {
         }
         
         function clickHandler() {
-            Projects.forEach((project) => {
-                if (project.isSelected === true) {
-                    project.removeTodo(todoItemIndex);
-                }
-            })
+            Projects[getSelectedProjectIndex()].removeTodo(todoItemIndex);
 
             displayTodos();
 

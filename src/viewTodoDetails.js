@@ -1,4 +1,5 @@
-import { Projects } from "./DOM.js";
+import { Projects, getSelectedProjectIndex } from "./DOM.js";
+import { displayTodos } from "./displayTodos.js";
 
 export function viewTodoDetails(event) {
     const target = event.target;
@@ -12,19 +13,16 @@ export function viewTodoDetails(event) {
         const applyButton = document.getElementById("apply");
         const cancelButton = document.getElementById("cancel-detail");
         const categoryDetails = document.getElementById("category-detail");
-        const todoItemIndex = target.dataset.indexNumber;
+        
+        const clickedTodoItemIndex = target.dataset.indexNumber;
+        
+        const todoItem = Projects[getSelectedProjectIndex()].todoItem[clickedTodoItemIndex];
 
-        Projects.forEach((project) => {
-            if (project.isSelected === true) {
-                const todoItem = project.todoItem[todoItemIndex];
-
-                titleDetails.value = todoItem.title;
-                descDetails.value = todoItem.descript;
-                dueDateDetails.value = todoItem.dueDate;
-                priorityDetails.value = todoItem.priority;
-                categoryDetails.value = todoItem.category;
-            }
-        })
+        titleDetails.value = todoItem.title;
+        descDetails.value = todoItem.descript;
+        dueDateDetails.value = todoItem.dueDate;
+        priorityDetails.value = todoItem.priority;
+        categoryDetails.value = todoItem.category;
 
         detailsDialog.showModal();
 
@@ -34,17 +32,11 @@ export function viewTodoDetails(event) {
         }
 
         function clickHandler() {
-            Projects.forEach((project) => {
-                if (project.isSelected === true) {
-                    const todoItem = project.todoItem[todoItemIndex];
-
-                    todoItem.title = titleDetails.value;
-                    todoItem.descript = descDetails.value;
-                    todoItem.dueDate = dueDateDetails.value;
-                    todoItem.priority = priorityDetails.value;
-                    todoItem.category = categoryDetails.value;
-                }
-            })
+            todoItem.title = titleDetails.value;
+            todoItem.descript = descDetails.value;
+            todoItem.dueDate = dueDateDetails.value;
+            todoItem.priority = priorityDetails.value;
+            todoItem.category = categoryDetails.value;
 
             displayTodos();
 

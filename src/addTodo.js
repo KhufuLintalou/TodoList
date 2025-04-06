@@ -1,6 +1,6 @@
 import { getCurrentDate } from "./Date.js";
 import { updateDisplay } from "./DOM.js";
-import { Projects } from "./DOM.js";
+import { Projects, getSelectedProjectIndex } from "./DOM.js";
 import { displayTodos } from "./displayTodos.js";
 
 export function addTodo() {
@@ -49,14 +49,10 @@ export function addTodo() {
             if (categoryInput.value === "") {
                 categoryInput.value = "General";
             }
-
-            Projects.forEach((project) => {
-                if (project.isSelected === true) {
-                    project.createTodo(titleInput.value, descInput.value, dateInput.value,
-                                       prioritySelect.value, categoryInput.value);
-                }
-            })
-
+            
+            Projects[getSelectedProjectIndex()].createTodo(titleInput.value, descInput.value, dateInput.value,
+            prioritySelect.value, categoryInput.value);
+              
             displayTodos();
             clearInputs();
             

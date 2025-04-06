@@ -1,23 +1,19 @@
-import { Projects } from "./DOM.js";
+import { Projects, getSelectedProjectIndex } from "./DOM.js";
 
 export function changeTodoStatus(event) {
     const target = event.target;
 
     if (target.className === "checkbox") {
-        const todoItemOnPage = target.parentElement;
+        const checkboxTodoItem = target.parentElement;
         
+        function changeTodoitemStatus() {
+            Projects[getSelectedProjectIndex()].todoItem[checkboxTodoItem.dataset.indexNumber].changeStatus();
+        }
+
         if (target.checked) {
-            Projects.forEach((project) => {
-                if (project.isSelected === true) {
-                    project.todoItem[todoItemOnPage.dataset.indexNumber].changeStatus();
-                }
-            })
+            changeTodoitemStatus()
         } else {
-            Projects.forEach((project) => {
-                if (project.isSelected === true) {
-                    project.todoItem[todoItemOnPage.dataset.indexNumber].changeStatus();
-                }
-            })
+            changeTodoitemStatus();
         }
     }
 }
