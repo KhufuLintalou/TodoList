@@ -1,3 +1,6 @@
+import { Projects } from "./DOM.js";
+import { displayTodos } from "./displayTodos.js";
+
 export function removeTodoOnPage(event) {
     const target = event.target;
 
