@@ -52,3 +52,15 @@ export function selectProjectOnClick(event) {
     }
 }
 
+export function getSelectedProjectIndex() {
+    let index;
+
+    Projects.forEach((project) => {
+        if (project.isSelected === true) {
+            index = Projects.indexOf(project);
+        }
+    })
+
+    return index;
+}
+
