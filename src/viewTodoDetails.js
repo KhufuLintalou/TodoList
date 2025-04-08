@@ -32,6 +32,10 @@ export function viewTodoDetails(event) {
         }
 
         function clickHandler() {
+            if (categoryDetails.value === "") {
+                categoryDetails.value = "General";
+            }
+
             todoItem.title = titleDetails.value;
             todoItem.descript = descDetails.value;
             todoItem.dueDate = dueDateDetails.value;

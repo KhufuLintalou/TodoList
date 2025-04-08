@@ -1,6 +1,5 @@
 import { getCurrentDate } from "./Date.js";
-import { updateDisplay } from "./DOM.js";
-import { Projects, getSelectedProjectIndex } from "./DOM.js";
+import { updateDisplay, Projects, getSelectedProjectIndex } from "./DOM.js";
 import { displayTodos } from "./displayTodos.js";
 
 export function addTodo() {
@@ -19,14 +18,6 @@ export function addTodo() {
     updateDisplay("error");
     newTodoDialog.show();
 
-    function inputCheck() {
-        if (titleInput.value === "" || descInput.value === ""
-            || dateInput.value === formattedCurrentDate) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     function clearInputs() {
         const inputs = document.querySelectorAll("#new-todo input");
@@ -37,11 +28,11 @@ export function addTodo() {
     }
 
     addTodoButton.addEventListener("click", () => {
-        if (inputCheck()) {
+        if (titleInput.value === "") {
             updateDisplay("error");
 
             const errorMessage = document.createElement("div");
-            errorMessage.textContent = "You need to fill in all the fields."
+            errorMessage.textContent = "*You need to fill in the Title."
             errorMessage.id = "error";
 
             newTodoDialog.appendChild(errorMessage);

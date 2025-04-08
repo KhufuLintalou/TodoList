@@ -1,6 +1,4 @@
-import { Projects } from "./DOM.js";
-import { updateDisplay } from "./DOM.js";
-import { sidebar } from "./DOM.js";
+import { Projects, updateDisplay, sidebar } from "./DOM.js";
 
 export function displayProjects() {
     updateDisplay("project");
