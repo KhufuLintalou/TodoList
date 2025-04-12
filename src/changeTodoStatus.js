@@ -6,14 +6,14 @@ export function changeTodoStatus(event) {
     if (target.className === "checkbox") {
         const checkboxTodoItem = target.parentElement;
         
-        function changeTodoitemStatus() {
+        function changeTodoItemStatus() {
             Projects[getSelectedProjectIndex()].todoItem[checkboxTodoItem.dataset.indexNumber].changeStatus();
         }
 
         if (target.checked) {
-            changeTodoitemStatus()
+            changeTodoItemStatus();
         } else {
-            changeTodoitemStatus();
+            changeTodoItemStatus();
         }
     }
 }

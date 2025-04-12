@@ -42,7 +42,7 @@ export function addTodo() {
             }
             
             Projects[getSelectedProjectIndex()].createTodo(titleInput.value, descInput.value, dateInput.value,
-            prioritySelect.value, categoryInput.value);
+                                                           prioritySelect.value, categoryInput.value, "yet");
               
             displayTodos();
             clearInputs();
