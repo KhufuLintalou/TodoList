@@ -6,6 +6,14 @@ import { addTodo } from "./addTodo.js";
 import { viewTodoDetails } from "./viewTodoDetails.js";
 import { changeTodoStatus } from "./changeTodoStatus.js";
 import { removeTodoOnPage } from "./removeTodo.js";
+import { addSavedProjects } from "./storage.js";
+
+addSavedProjects(DOM.Projects);
+
+if (!DOM.Projects[0]) {
+    createProject("My Project");
+    DOM.Projects[0].selectProject();
+}
 
 displayProjects();
 displayTodos();
