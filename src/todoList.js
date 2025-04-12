@@ -1,10 +1,13 @@
+import { saveProjects } from "./storage.js";
+import { Projects } from "./DOM.js";
+
 class Todo {
-    constructor(title, descript, dueDate, priority, category) {
+    constructor(title, descript, dueDate, priority, category, status) {
         this.title = title;
         this.descript = descript;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.status = "yet";
+        this.status = status;
         this.category = category;
     }
 
@@ -14,6 +17,8 @@ class Todo {
         } else {
             this.status = "yet";
         }
+
+        saveProjects(Projects);
     }
 }
 
@@ -24,9 +29,11 @@ class Project {
         this.isSelected = false;
     }
 
-    createTodo(title, descript, dueDate, priority, category) {
-        const newTodoItem = new Todo(title, descript, dueDate, priority, category);
+    createTodo(title, descript, dueDate, priority, category, status) {
+        const newTodoItem = new Todo(title, descript, dueDate, priority, category, status);
         this.todoItem.push(newTodoItem);
+
+        saveProjects(Projects);
     }
 
     selectProject() {
@@ -39,6 +46,8 @@ class Project {
 
     removeTodo(index) {
         this.todoItem.splice(index, 1);
+
+        saveProjects(Projects);
     }
 }
 

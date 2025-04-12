@@ -1,4 +1,5 @@
 import { Project } from "./todoList.js";
+import { saveProjects } from "./storage.js";
 
 export const Projects = [];
 
@@ -6,10 +7,6 @@ export function createProject(name) {
     const newProject = new Project(name);
     Projects.push(newProject);
 }
-
-createProject("My Project");
-Projects[0].createTodo("test", "this is for testing", "implement later", 3, "TEST");
-Projects[0].selectProject();
 
 export const sidebar = document.querySelector(".sidebar");
 export const todoSection = document.querySelector(".todo-section");
@@ -38,20 +35,6 @@ export function updateDisplay(display) {
     } 
 }
 
-export function selectProjectOnClick(event) {
-    const target = event.target;
-
-    if (Projects[target.dataset.indexNumber].isSelected === false) {
-        Projects.forEach((project) => {
-            if (project.isSelected === true) {
-                project.deSelectProject();
-            }
-        })
-
-        Projects[target.dataset.indexNumber].selectProject();
-    }
-}
-
 export function getSelectedProjectIndex() {
     let index;
 
@@ -62,5 +45,17 @@ export function getSelectedProjectIndex() {
     })
 
     return index;
+}
+
+export function selectProjectOnClick(event) {
+    const target = event.target;
+
+    if (Projects[target.dataset.indexNumber].isSelected === false) {
+        Projects[getSelectedProjectIndex()].deSelectProject();
+
+        Projects[target.dataset.indexNumber].selectProject();
+
+        saveProjects(Projects);
+    }
 }
 

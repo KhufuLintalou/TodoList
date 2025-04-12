@@ -1,5 +1,6 @@
 import { Projects, getSelectedProjectIndex } from "./DOM.js";
 import { displayTodos } from "./displayTodos.js";
+import { saveProjects } from "./storage.js";
 
 export function viewTodoDetails(event) {
     const target = event.target;
@@ -44,7 +45,9 @@ export function viewTodoDetails(event) {
 
             displayTodos();
 
-            closeDialog()
+            closeDialog();
+
+            saveProjects(Projects);
         }
 
         applyButton.addEventListener("click", clickHandler);
