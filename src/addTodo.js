@@ -2,22 +2,22 @@ import { getCurrentDate } from "./Date.js";
 import { updateDisplay, Projects, getSelectedProjectIndex } from "./DOM.js";
 import { displayTodos } from "./displayTodos.js";
 
+const newTodoDialog = document.getElementById("new-todo");
+const titleInput = document.getElementById("title");
+const descInput = document.getElementById("desc");
+const dateInput = document.getElementById("dueDate");
+const prioritySelect = document.getElementById("priority");
+const addTodoButton = document.getElementById("add-todo");
+const cancelButton = document.getElementById("cancel-todo");
+const categoryInput = document.getElementById("category");
+
 export function addTodo() {
-    const newTodoDialog = document.getElementById("new-todo");
-    const titleInput = document.getElementById("title");
-    const descInput = document.getElementById("desc");
-    const dateInput = document.getElementById("dueDate");
-    const prioritySelect = document.getElementById("priority");
-    const addTodoButton = document.getElementById("add-todo");
-    const cancelButton = document.getElementById("cancel-todo");
-    const categoryInput = document.getElementById("category");
     const formattedCurrentDate = getCurrentDate();
 
     dateInput.min = formattedCurrentDate;
 
     updateDisplay("error");
     newTodoDialog.show();
-
 
     function clearInputs() {
         const inputs = document.querySelectorAll("#new-todo input");
@@ -40,13 +40,14 @@ export function addTodo() {
             if (categoryInput.value === "") {
                 categoryInput.value = "General";
             }
-            
+
             Projects[getSelectedProjectIndex()].createTodo(titleInput.value, descInput.value, dateInput.value,
                                                            prioritySelect.value, categoryInput.value, "yet");
-              
+
             displayTodos();
-            clearInputs();
             
+            clearInputs();
+
             newTodoDialog.close();
         }
     })
