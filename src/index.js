@@ -11,7 +11,7 @@ import { addSavedProjects } from "./storage.js";
 addSavedProjects(DOM.Projects);
 
 if (!DOM.Projects[0]) {
-    createProject("My Project");
+    DOM.createProject("My Project");
     DOM.Projects[0].selectProject();
 }
 
