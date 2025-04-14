@@ -1,7 +1,35 @@
 import { Projects, updateDisplay, todoSection, getSelectedProjectIndex } from "./DOM.js";
 
+function displayTodoCategory() {
+    Projects[getSelectedProjectIndex()].todoItem.forEach((todo) => {
+        const categoryOnPage = document.createElement("div");
+        const categoryTitle = document.createElement("h2");
+
+        categoryTitle.textContent = todo.category;
+
+        categoryOnPage.className = "category";
+        categoryTitle.className = "category-title";
+
+        categoryOnPage.id = todo.category;
+
+        categoryOnPage.appendChild(categoryTitle);
+
+        const categoryWithIdOnPage = document.getElementById(todo.category);
+
+        if (!categoryWithIdOnPage) {
+            todoSection.appendChild(categoryOnPage);
+        } else {
+            categoryOnPage.remove();
+        }
+    })
+}
+
 export function displayTodos() {
     updateDisplay("todo");
+
+    displayTodoCategory();
+
+    const categoriesOnPage = document.querySelectorAll(".category");
 
     Projects[getSelectedProjectIndex()].todoItem.forEach((todo) => {
         const todoItem = document.createElement("div");
@@ -35,36 +63,6 @@ export function displayTodos() {
         todoItem.appendChild(removeButton);
         todoContentWrapper.appendChild(todoTitle);
         todoContentWrapper.appendChild(todoDueDate);
-
-        const categories = [];
-
-        if (!categories.includes(todo.category)) {
-            categories.push(todo.category);
-        }
-
-        categories.forEach((category) => {
-            const categoryOnPage = document.createElement("div");
-            const categoryTitle = document.createElement("h2");
-
-            categoryTitle.textContent = category;
-
-            categoryOnPage.className = "category";
-            categoryTitle.className = "category-title";
-
-            categoryOnPage.id = category;
-
-            categoryOnPage.appendChild(categoryTitle);
-
-            const categoryWithIdOnPage = document.getElementById(category);
-
-            if (!categoryWithIdOnPage) {
-                todoSection.appendChild(categoryOnPage);
-            } else {
-                categoryOnPage.remove();
-            }
-        })
-
-        const categoriesOnPage = document.querySelectorAll(".category");
 
         categoriesOnPage.forEach((category) => {
             if (todo.category === category.id) {
