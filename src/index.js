@@ -7,6 +7,7 @@ import { viewTodoDetails } from "./viewTodoDetails.js";
 import { changeTodoStatus } from "./changeTodoStatus.js";
 import { removeTodoOnPage } from "./removeTodo.js";
 import { addSavedProjects } from "./storage.js";
+import "./styles.css";
 
 addSavedProjects(DOM.Projects);
 

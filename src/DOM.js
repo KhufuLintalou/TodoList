@@ -1,5 +1,6 @@
 import { Project } from "./todoList.js";
 import { saveProjects } from "./storage.js";
+import { displayProjects } from "./displayProjects.js";
 
 export const Projects = [];
 
@@ -55,7 +56,8 @@ export function selectProjectOnClick(event) {
 
         Projects[target.dataset.indexNumber].selectProject();
 
+        displayProjects();
+
         saveProjects(Projects);
     }
 }
-

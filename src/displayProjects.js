@@ -9,6 +9,10 @@ export function displayProjects() {
         projectDisplay.className = "project";
         projectDisplay.dataset.indexNumber = Projects.indexOf(project);
 
+        if (project.isSelected === true) {
+            projectDisplay.classList.add("selected");
+        }
+
         sidebar.appendChild(projectDisplay);
     })
 }
