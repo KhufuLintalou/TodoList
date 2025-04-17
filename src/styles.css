@@ -45,23 +45,29 @@
     text-indent: 10px;
     width: 90%;
     height: 40px;
-    background-color: black;
+    background-color: #111111;
     color: white;
-    border: 2px solid white;
+    border: none;
+    border-left: 2px solid white;
     font-size: 20px;
     transition-duration: 100ms;
     cursor: pointer;
 }
 
 .project:hover {
-    filter: contrast(120%);
-    border-left: 6px solid white;
+    border: 2px solid white;
 }
 
 .selected {
     background-color: white;
     color: black;
     font-weight: bold;
-    border-left: 6px solid white;
+    text-indent: 20px;
     text-decoration: underline;
+    border: none;
+}
+
+.selected:hover {
+    filter: brightness(88%);
+    border: none;
 }
