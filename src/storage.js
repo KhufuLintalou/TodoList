@@ -17,6 +17,8 @@ export function addSavedProjects(projectArr) {
 
             projectArr.push(newProject);
 
+            saveProjects(projectArr);
+
             project.todoItem.forEach((todo) => {
                 newProject.createTodo(todo.title, todo.descript, todo.dueDate,
                                       todo.priority, todo.category, todo.status);

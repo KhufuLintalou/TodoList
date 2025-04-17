@@ -1,5 +1,6 @@
-import { createProject } from "./DOM.js";
+import { createProject, Projects } from "./DOM.js";
 import { displayProjects } from "./displayProjects.js";
+import { saveProjects } from "./storage.js";
 
 export function addProject() {
     const newProjectDialog = document.getElementById("new-project");
@@ -18,6 +19,8 @@ export function addProject() {
 
             displayProjects();
         }
+
+        saveProjects(Projects)
     })
 
     closeDialog.addEventListener("click", () => {
