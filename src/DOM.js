@@ -11,7 +11,7 @@ export function createProject(name) {
 
 export const sidebar = document.querySelector(".sidebar");
 export const todoSection = document.querySelector(".todo-section");
-export const newTodoButtonDiv = document.querySelector(".todo-section > div");
+export const newTodoButtonDiv = document.getElementById("new-todo-wrapper");
 export const newProjectButton = document.getElementById("new-project-button");
 export const newTodoButton = document.getElementById("new-todo-button");
 
