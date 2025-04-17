@@ -71,3 +71,27 @@
     filter: brightness(88%);
     border: none;
 }
+
+.todo-section {
+    position: relative;
+}
+
+#new-todo-wrapper {
+    position: fixed;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    top: 5px;
+}
+
+#new-todo-button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0ba90b;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
