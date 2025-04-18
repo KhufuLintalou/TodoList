@@ -74,6 +74,13 @@
 
 .todo-section {
     position: relative;
+    background-color: #393a3f;
+    color: white;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 30px;
+    overflow: scroll;
+    padding-left: 30px;
 }
 
 #new-todo-wrapper {
@@ -81,7 +88,8 @@
     width: 80%;
     display: flex;
     justify-content: center;
-    top: 5px;
+    bottom: 40px;
+    left: 950px;
 }
 
 #new-todo-button {
@@ -94,4 +102,19 @@
     font-size: 25px;
     font-weight: bold;
     cursor: pointer;
+    transition-duration: 100ms;
+}
+
+#new-todo-button:hover {
+    font-size: 30px;
+}
+
+#new-todo-button:active {
+    transform: scale(0.93);
+}
+
+.category {
+    width: 40%;
+    flex-shrink: 0;
+    margin-top: 30px;
 }
