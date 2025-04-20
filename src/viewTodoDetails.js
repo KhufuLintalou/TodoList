@@ -14,7 +14,7 @@ const categoryDetails = document.getElementById("category-detail");
 export function viewTodoDetails(event) {
     const target = event.target;
 
-    if (target.className === "todo-item") {
+    if (target.classList[0] === "todo-item") {
         const clickedTodoItemIndex = target.dataset.indexNumber;
         const todoItem = Projects[getSelectedProjectIndex()].todoItem[clickedTodoItemIndex];
 

@@ -1,4 +1,5 @@
 import { Projects, getSelectedProjectIndex } from "./DOM.js";
+import { displayTodos } from "./displayTodos.js";
 
 export function changeTodoStatus(event) {
     const target = event.target;
@@ -8,6 +9,8 @@ export function changeTodoStatus(event) {
         
         function changeTodoItemStatus() {
             Projects[getSelectedProjectIndex()].todoItem[checkboxTodoItem.dataset.indexNumber].changeStatus();
+
+            displayTodos();
         }
 
         if (target.checked) {
