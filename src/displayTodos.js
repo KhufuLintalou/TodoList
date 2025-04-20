@@ -54,9 +54,13 @@ export function displayTodos() {
 
         if (todo.status === "complete") {
             todoCheckBox.defaultChecked = true;
+
+            todoItem.classList.add("complete");
         } else {
             todoCheckBox.defaultChecked = false;
         }
+
+        todoItem.classList.add(todo.priority);
 
         todoItem.appendChild(todoCheckBox);
         todoItem.appendChild(todoContentWrapper);
