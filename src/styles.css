@@ -83,6 +83,7 @@
     overflow: scroll;
     padding-left: 30px;
     padding-right: 30px;
+    scrollbar-color: grey #414248;
 }
 
 #new-todo-wrapper {
@@ -90,8 +91,8 @@
     width: 80%;
     display: flex;
     justify-content: center;
-    bottom: 40px;
-    left: 950px;
+    bottom: 4vh;
+    left: 57vw;
 }
 
 #new-todo-button {
@@ -175,4 +176,49 @@ input[type="checkbox"] {
 
 .High {
     outline: 2px solid red;
+}
+
+#new-project[open] {
+    position: absolute;
+    top: 35px;
+    border: 3px ridge #bcbcbc;
+    background-color: #393a3f;
+    color: white;
+    padding: 5px;
+}
+
+#new-project input {
+    background-color: #52565d;
+    border: none;
+    color: white;
+    height: 22px;
+    font-size: 18px;
+    text-indent: 3px;
+}
+
+#new-project label {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#new-project button {
+    width: 20px;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#new-project button:hover {
+    outline: 2px solid white;
+}
+
+#add-project {
+    background-color: #0ba90b;
+    border: none;
+}
+
+#cancle-project {
+    background-color: #ce4f4f;
+    border: none;
 }
