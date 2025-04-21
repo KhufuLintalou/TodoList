@@ -16,7 +16,7 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    background-color: black;
+    background-color: #242528;
 }
 
 #new-project-button {
@@ -46,7 +46,7 @@
     text-indent: 10px;
     width: 90%;
     height: 40px;
-    background-color: #111111;
+    background-color: #414248;
     color: white;
     border: none;
     border-left: 2px solid white;
