@@ -30,7 +30,6 @@
     font-weight: bold;
     border: none;
     transition-duration: 100ms;
-    cursor: pointer;
 }
 
 #new-project-button:hover {
@@ -52,7 +51,6 @@
     border-left: 2px solid white;
     font-size: 20px;
     transition-duration: 100ms;
-    cursor: pointer;
 }
 
 .project:hover {
@@ -104,7 +102,6 @@
     color: white;
     font-size: 25px;
     font-weight: bold;
-    cursor: pointer;
     transition-duration: 100ms;
 }
 
@@ -153,7 +150,6 @@
     border: none;
     color: white;
     font-weight: bold;
-    cursor: pointer;
 }
 
 .remove:hover {
@@ -206,7 +202,6 @@ input[type="checkbox"] {
     font-size: 18px;
     color: white;
     font-weight: bold;
-    cursor: pointer;
 }
 
 #new-project button:hover {
@@ -263,4 +258,97 @@ input[type="checkbox"] {
 
 #no {
     background-color: #5f646b;
+}
+
+#todo-detail[open],
+#new-todo[open] {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    height: 700px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    background-color: #393a3f;
+    color: white;
+    padding: 20px;
+    border: 5px ridge #bcbcbc;
+}
+
+#todo-detail input,
+#new-todo input {
+    background-color: #52565d;
+    color: white;
+    border: none;
+    margin-bottom: 10px;
+    height: 8%;
+    font-size: 18px;
+}
+
+select {
+    background-color: #52565d;
+    color: white;
+    font-size: 18px;
+    width: 100px;
+}
+
+#todo-detail label,
+#new-todo label {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#dueDate,
+#dueDate-detail {
+    width: 220px;
+}
+
+#desc,
+#desc-detail {
+    height: 240px;
+    background-color: #52565d;
+    color: white;
+    font-size: 18px;
+    resize: none;
+    margin-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #a1a1a1 #52565d;
+}
+
+#todo-detail div,
+#new-todo div {
+    margin-top: 10px;
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#todo-detail button,
+#new-todo button {
+    font-size: 20px;
+    color: white;
+    border: none;
+    font-weight: bold;
+    padding: 5px;
+}
+
+#todo-detail button:hover,
+#new-todo button:hover {
+    outline: 2px solid white;
+}
+
+#cancel-todo,
+#cancel-detail {
+    background-color: #ce4f4f;
+}
+
+#add-todo,
+#apply {
+    background-color: #0ba90b;
+}
+
+button {
+    cursor: pointer;
 }
