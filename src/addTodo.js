@@ -23,7 +23,9 @@ export function addTodo() {
         const inputs = document.querySelectorAll("#new-todo input");
 
         inputs.forEach((input) => {
-            input.value = "";
+            if (input.id !== "category") {
+                input.value = "";
+            }
         })
     }
 
