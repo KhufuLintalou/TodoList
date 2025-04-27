@@ -21,12 +21,15 @@ export function addTodo() {
 
     function clearInputs() {
         const inputs = document.querySelectorAll("#new-todo input");
+        const descInput = document.getElementById("desc");
 
         inputs.forEach((input) => {
             if (input.id !== "category") {
                 input.value = "";
             }
         })
+
+        descInput.value = "";
     }
 
     addTodoButton.addEventListener("click", () => {
